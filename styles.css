@@ -1,0 +1,570 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --zoom: 1;
+  --pan-x: 0px;
+  --pan-y: 0px;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe Print", "Segoe Script", "Comic Sans MS", cursive;
+  background: #1c1a18;
+  color: #2c2620;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+}
+
+.brandbar {
+  display: none;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-size: 22px;
+  letter-spacing: 0.6px;
+}
+
+.brand-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dflip-stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #1c1a18;
+}
+
+#menu_book {
+  width: 100%;
+  height: 100%;
+  background: #1c1a18;
+}
+
+.df-container,
+.df-viewer,
+.df-main,
+.df-book-stage,
+.df-ui,
+.df-ui-wrapper,
+.df-ui-bar,
+.df-ui-top,
+.df-ui-bottom,
+.df-ui-left,
+.df-ui-right,
+.df-ui-panel,
+.df-ui-controls {
+  background: #1c1a18 !important;
+}
+
+.df-ui,
+.df-ui * {
+  color: #f3eadf;
+}
+
+.df-ui .df-ui-btn,
+.df-ui button,
+.df-ui .df-icon,
+.df-ui .df-icon-left,
+.df-ui .df-icon-right,
+.df-ui .df-icon-share {
+  color: #f3eadf;
+  filter: none;
+}
+
+.df-ui .df-ui-btn,
+.df-ui button {
+  background: rgba(22, 18, 14, 0.75) !important;
+  border: 1px solid rgba(243, 234, 223, 0.25);
+}
+
+.df-ui .df-ui-btn,
+.df-ui button,
+.df-ui .df-ui-btn *,
+.df-ui button * {
+  background-color: rgba(22, 18, 14, 0.75) !important;
+}
+
+.df-ui .df-ui-btn,
+.df-ui .df-ui-btn.df-ui-alt,
+.df-ui .df-ui-btn.df-ui-prev,
+.df-ui .df-ui-btn.df-ui-next,
+.df-ui .df-ui-btn.df-ui-thumbnail,
+.df-ui .df-ui-btn.df-ui-zoomin,
+.df-ui .df-ui-btn.df-ui-zoomout,
+.df-ui .df-ui-btn.df-ui-fullscreen,
+.df-ui .df-ui-btn.df-ui-share,
+.df-ui .df-ui-btn.df-ui-more,
+.df-ui .df-ui-btn.df-ui-pagemode,
+.df-ui .df-ui-btn.df-ui-start,
+.df-ui .df-ui-btn.df-ui-end,
+.df-ui .df-ui-btn.df-ui-sound {
+  background-color: rgba(22, 18, 14, 0.55) !important;
+  color: #f3eadf !important;
+  border-color: rgba(243, 234, 223, 0.2) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex !important;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.df-ui-wrapper .df-ui-btn,
+.df-ui-wrapper .df-ui-btn.df-ui-alt,
+.df-ui-wrapper .df-ui-btn.df-ui-prev,
+.df-ui-wrapper .df-ui-btn.df-ui-next,
+.df-ui-wrapper .df-ui-btn.df-ui-thumbnail,
+.df-ui-wrapper .df-ui-btn.df-ui-zoomin,
+.df-ui-wrapper .df-ui-btn.df-ui-zoomout,
+.df-ui-wrapper .df-ui-btn.df-ui-fullscreen,
+.df-ui-wrapper .df-ui-btn.df-ui-share,
+.df-ui-wrapper .df-ui-btn.df-ui-more,
+.df-ui-wrapper .df-ui-btn.df-ui-pagemode,
+.df-ui-wrapper .df-ui-btn.df-ui-start,
+.df-ui-wrapper .df-ui-btn.df-ui-end,
+.df-ui-wrapper .df-ui-btn.df-ui-sound {
+  background-color: rgba(22, 18, 14, 0.55) !important;
+  color: #f3eadf !important;
+  border-color: rgba(243, 234, 223, 0.2) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.df-ui-wrapper .df-ui-btn *,
+.df-ui-wrapper .df-ui-btn span {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.df-ui .df-ui-btn span {
+  color: #f3eadf !important;
+  background-color: transparent !important;
+}
+
+.df-container .df-ui .df-ui-btn,
+.df-container .df-ui .df-ui-btn.disabled,
+.df-container .df-ui .df-ui-btn:hover,
+.df-container .df-ui .df-ui-btn:active {
+  background-color: rgba(22, 18, 14, 0.55) !important;
+  color: #f3eadf !important;
+  border-color: rgba(243, 234, 223, 0.2) !important;
+  background-image: none !important;
+}
+
+.df-container .df-ui-wrapper .df-ui-btn,
+.df-container .df-ui-wrapper .df-ui-btn.disabled,
+.df-container .df-ui-wrapper .df-ui-btn:hover,
+.df-container .df-ui-wrapper .df-ui-btn:active {
+  background-color: rgba(22, 18, 14, 0.55) !important;
+  color: #f3eadf !important;
+  border-color: rgba(243, 234, 223, 0.2) !important;
+  background-image: none !important;
+}
+
+.df-container .df-ui-wrapper .df-ui-btn.disabled {
+  opacity: 0.45;
+  box-shadow: none !important;
+}
+
+.df-container .df-ui .df-ui-btn.disabled {
+  opacity: 0.45;
+  box-shadow: none !important;
+}
+
+.df-ui .df-ui-controls,
+.df-ui .df-ui-bar,
+.df-ui .df-ui-panel {
+  border-radius: 16px !important;
+  padding: 6px 8px;
+  box-shadow: none !important;
+}
+
+.df-ui .df-ui-btn::before,
+.df-ui .df-ui-btn::after,
+.df-ui .df-ui-controls::before,
+.df-ui .df-ui-controls::after {
+  background-color: transparent !important;
+}
+
+.df-ui .df-ui-bar,
+.df-ui .df-ui-top,
+.df-ui .df-ui-bottom,
+.df-ui .df-ui-panel,
+.df-ui .df-ui-controls,
+.df-ui .df-ui-wrapper,
+.df-ui .df-ui-controls * {
+  background-color: rgba(22, 18, 14, 0.85) !important;
+}
+
+.df-thumb-wrapper,
+.df-thumb-container,
+.df-thumb-list {
+  background-color: rgba(22, 18, 14, 0.85) !important;
+  color: #f3eadf !important;
+}
+
+.df-thumb,
+.df-vrow {
+  background-color: rgba(22, 18, 14, 0.6) !important;
+  border: 1px solid rgba(243, 234, 223, 0.18) !important;
+}
+
+.df-thumb:hover,
+.df-thumb.selected,
+.df-thumb.selected:hover,
+.df-thumb.selected:focus,
+.df-vrow:hover,
+.df-vrow.df-selected,
+.df-vrow.df-selected:hover,
+.df-vrow.df-selected:focus {
+  background-color: rgba(243, 234, 223, 0.12) !important;
+  border-color: rgba(210, 187, 163, 0.75) !important;
+  box-shadow: 0 0 0 2px rgba(210, 187, 163, 0.2) !important;
+}
+
+.df-ui .df-ui-controls,
+.df-ui .df-ui-controls > *,
+.df-ui .df-ui-bar,
+.df-ui .df-ui-panel {
+  border-color: rgba(243, 234, 223, 0.25) !important;
+}
+
+.df-ui .df-ui-controls,
+.df-ui .df-ui-controls > * {
+  box-shadow: none !important;
+}
+
+.df-ui .df-ui-controls,
+.df-ui .df-ui-controls > * {
+  background-image: none !important;
+}
+
+.df-ui input,
+.df-ui select {
+  background: rgba(22, 18, 14, 0.7);
+  color: #f3eadf;
+  border: 1px solid rgba(243, 234, 223, 0.25);
+}
+
+.df-ui .df-icon {
+  filter: invert(1) sepia(0.2) saturate(0.2) brightness(1.2);
+}
+
+
+.stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2000px;
+}
+
+.book {
+  position: relative;
+  width: var(--book-width, 900px);
+  height: var(--book-height, 640px);
+  transform: translate(var(--pan-x), var(--pan-y)) scale(var(--zoom));
+  transform-origin: center;
+  transition: transform 0.25s ease;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.book.single .page {
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background-image: url("background.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: flex;
+  transition: box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("background.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.page.left {
+  left: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+.page.right {
+  right: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.page.single {
+  border-radius: 12px;
+}
+
+.page-inner {
+  width: 100%;
+  height: 100%;
+  padding: 32px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backface-visibility: hidden;
+  transform: translateZ(1px);
+}
+
+.page-content {
+  overflow: hidden;
+}
+
+.cover {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.cover-logo {
+  width: min(240px, 60%);
+  height: auto;
+}
+
+.cover-title {
+  font-size: 38px;
+}
+
+.cover-subtitle {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.category-title {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  font-size: 15px;
+}
+
+.menu-item-name {
+  font-weight: 600;
+}
+
+.menu-item-qty {
+  color: #4d4035;
+  font-size: 13px;
+}
+
+.menu-item.allergens-item {
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.menu-item.allergens-item .menu-item-name,
+.menu-item.allergens-item .menu-item-qty {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c2620;
+}
+
+.menu-item.allergens-item .menu-item-qty {
+  text-align: left;
+}
+
+.menu-item-price {
+  font-weight: 700;
+  text-align: right;
+}
+
+.menu-item-ingredients,
+.menu-item-allergens {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: #4e3f34;
+  line-height: 1.2;
+}
+
+.menu-item-allergens {
+  font-size: 11px;
+  color: #7a3a2e;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  background: rgba(122, 58, 46, 0.12);
+  padding: 3px 6px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.toolbar {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 12px 12px;
+  background: rgba(22, 18, 14, 0.78);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
+  color: #f3eadf;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.nav-btn,
+.zoom-btn,
+.lang-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: #f3eadf;
+  color: #2c2620;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page-indicator {
+  min-width: 160px;
+  text-align: center;
+  color: #f3eadf;
+}
+
+.zoom-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lang-toggle {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.lang-btn.active {
+  background: #d2bba3;
+}
+
+.book.flipping .page {
+  transition: transform 0.65s cubic-bezier(0.2, 0.6, 0.2, 1), box-shadow 0.65s ease;
+  transform-style: preserve-3d;
+}
+
+.page.turn-next {
+  transform: rotateY(-180deg) translateZ(2px);
+  transform-origin: left center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.page.turn-prev {
+  transform: rotateY(180deg) translateZ(2px);
+  transform-origin: right center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 900px) {
+  .page-inner {
+    padding: 24px 22px;
+  }
+
+  .menu-item {
+    grid-template-columns: 1fr auto;
+  }
+
+  .menu-item-price {
+    grid-column: 2;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+  }
+}
