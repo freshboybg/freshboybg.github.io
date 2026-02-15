@@ -8,6 +8,14 @@
   --pan-y: 0px;
 }
 
+@font-face {
+  font-family: "Patrick Hand";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/patrick-hand-v25-latin-regular.woff2") format("woff2");
+}
+
 body {
   margin: 0;
   font-family: "Patrick Hand", "Segoe Print", "Segoe Script", "Comic Sans MS", cursive;

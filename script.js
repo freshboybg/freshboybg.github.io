@@ -560,11 +560,27 @@ const fetchDataUrl = (path) =>
   }));
 
 const ensureFontsLoaded = async () => {
-  if (!document.fonts || !document.fonts.load) {
-    return;
+  const fontName = "Patrick Hand";
+  const fontUrl = "fonts/patrick-hand-v25-latin-regular.woff2";
+  if ("FontFace" in window) {
+    const face = new FontFace(fontName, `url(${fontUrl})`, {
+      style: "normal",
+      weight: "400",
+    });
+    await face.load();
+    if (document.fonts && document.fonts.add) {
+      document.fonts.add(face);
+      if (document.fonts.load) {
+        await document.fonts.load(`16px "${fontName}"`);
+      }
+      await document.fonts.ready;
+      return;
+    }
   }
-  await document.fonts.load('16px "Patrick Hand"');
-  await document.fonts.ready;
+  if (document.fonts && document.fonts.load) {
+    await document.fonts.load(`16px "${fontName}"`);
+    await document.fonts.ready;
+  }
 };
 
 const initDflip = async () => {
