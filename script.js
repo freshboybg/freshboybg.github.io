@@ -356,7 +356,7 @@ const renderPageToImage = async (pageData, width, height, assets) => {
   let y = paddingY;
   const contentWidth = width - paddingX * 2;
 
-  const fontFamily = '"Segoe Print","Segoe Script","Comic Sans MS",cursive';
+  const fontFamily = '"Patrick Hand","Segoe Print","Segoe Script","Comic Sans MS",cursive';
 
   if (pageData.type === "cover") {
     ctx.fillStyle = "#2c2620";
@@ -559,9 +559,19 @@ const fetchDataUrl = (path) =>
     reader.readAsDataURL(blob);
   }));
 
+const ensureFontsLoaded = async () => {
+  if (!document.fonts || !document.fonts.load) {
+    return;
+  }
+  await document.fonts.load('16px "Patrick Hand"');
+  await document.fonts.ready;
+};
+
 const initDflip = async () => {
   const response = await fetch("data/menu.json");
   state.data = normalizeMenu(await response.json());
+
+  await ensureFontsLoaded();
 
   const storedLang = localStorage.getItem("menuLang");
   if (storedLang) {
